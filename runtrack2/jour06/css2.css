@@ -1,0 +1,25 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    display: flex ;
+    justify-content: center;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffe4f3;
+}
+
+select {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffe4f3;
+    color: #ff758c;
+    font-size: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
