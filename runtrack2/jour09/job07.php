@@ -1,3 +1,36 @@
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Superficie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        thead tr {
+            background-color:rgb(62, 68, 193);
+            color: white;
+            text-align: left;
+        }
+        tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
 <?php
 // Paramètres de connexion à la base de données
 $servername = "localhost";
@@ -13,8 +46,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Requête SQL pour récupérer toutes les informations de la table étudiants
-    $sql = "SELECT SUM(superficie) AS superficie_totale 
-FROM etage";
+    $sql = "SELECT SUM(superficie) AS superficie_totale FROM etage";
     $stmt = $conn->query($sql);
 
     // Vérification s'il y a des résultats
