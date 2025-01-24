@@ -6,7 +6,6 @@ $req -> setFetchMode(PDO::FETCH_ASSOC);
 $req -> execute();
 $tabSalles =$req->fetchAll();
 
-
 ?>
 
 <!DOCTYPE html>
