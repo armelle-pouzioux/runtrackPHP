@@ -1,85 +1,40 @@
-<html lang='fr'>
+<?php
+$pdo = new PDO ("mysql:host=localhost;dbname=jour08;charset=utf8", "root");
+
+$req = $pdo -> prepare("SELECT AVG(capacite) AS capacite_moyenne FROM salles");
+$req -> setFetchMode(PDO::FETCH_ASSOC);
+$req -> execute();
+$tabavg =$req->fetchAll();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <title>Capacités moyenne</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-        }
-        thead tr {
-            background-color:rgb(62, 68, 193);
-            color: white;
-            text-align: left;
-        }
-        tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-        tbody tr:nth-of-type(even) {
-            background-color: #f3f3f3;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cssjour09.css">
+    <title>capacite</title>
 </head>
 <body>
-<?php
-// Paramètres de connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jour08";
-
-try {
-    // Connexion à la base de données avec PDO
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    
-    // Configuration pour que PDO lance des exceptions en cas d'erreur
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Requête SQL pour récupérer toutes les informations de la table étudiants
-    $sql = "SELECT AVG(capacite) AS capacite_moyenne FROM salles";
-    $stmt = $conn->query($sql);
-
-    // Vérification s'il y a des résultats
-    if ($stmt->rowCount() > 0) {
-        echo "<table border='1'>";
+    <table>
+        <tr>
+            <?php
+            foreach($tabavg[0] as $key =>$value){
+                echo "<th>".$key."</th>";
+            }
+            ?>
+        </tr>
+        <?php
         
-        // En-tête du tableau
-        echo "<thead><tr>";
-        for ($i = 0; $i < $stmt->columnCount(); $i++) {
-            $column = $stmt->getColumnMeta($i);
-            echo "<th>" . $column['name'] . "</th>";
-        }
-        echo "</tr></thead>";
-        
-        // Corps du tableau
-        echo "<tbody>";
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        foreach($tabavg as $avg){
             echo "<tr>";
-            foreach ($row as $value) {
-                echo "<td>" . htmlspecialchars($value) . "</td>";
+            foreach($avg as $value){
+                echo "<td>".$value."</td>";
             }
             echo "</tr>";
         }
-        echo "</tbody>";
-        
-        echo "</table>";
-    } else {
-        echo "Aucun résultat trouvé dans la table étudiants.";
-    }
-} catch(PDOException $e) {
-    echo "La connexion a échoué : " . $e->getMessage();
-}
-
-// Fermeture de la connexion (optionnel avec PDO)
-$conn = null;
-?>
+        ?>
+    </table> 
+</body>
+</html>
