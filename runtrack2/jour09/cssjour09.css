@@ -1,0 +1,36 @@
+:root{
+    --color0 : #ffff;
+    --color1 :#f6f4d2;
+    --color2 :#cbdfbd;
+    --color3 :#d4e09b;
+}
+
+
+body{
+    background-color: var(--color0);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid var(--color1);
+}
+
+th {
+    background-color: var(--color2);
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:hover {
+    background-color: var(--color3);
+}
