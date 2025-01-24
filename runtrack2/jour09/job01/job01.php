@@ -6,7 +6,6 @@ $req -> setFetchMode(PDO::FETCH_ASSOC);
 $req -> execute();
 $tabEtudiant =$req->fetchAll();
 
-
 ?>
 
 <!DOCTYPE html>
